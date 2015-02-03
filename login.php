@@ -54,6 +54,7 @@ if (!empty($_POST)) {
         //compare the two passwords
         if ($_POST['password'] === $row['password']) {
             $login_ok = true;
+            $_SESSION["user_login_name"] = $row['username'];
         }
     }
 
@@ -66,8 +67,10 @@ if (!empty($_POST)) {
 //        $response["message"] = "Login successful!";
 //        $response["username"] = $row['username'];
 
+        header('Location: /webservice/userpage.php');
 
-        die(json_encode($response));
+
+        //die(json_encode($response));
     } else {
         $response["success"] = 0;
         $response["message"] = "Invalid Credentials!";
